@@ -1,0 +1,24 @@
+<h1>My diary</h1>
+<p>All your todos here</p>
+
+
+<%= form_for @todo do |f| %>  
+  <%= f.text_field :title %>   
+  <%= f.submit "Add" %>
+<% end %>
+
+<% @todos.each do |t| %>
+<ul>
+  
+    <% if t.completed == true %>
+       <li style="color:grey;"> 
+        <%= check_box_tag  "todos_checkbox[]",t.id %> <strike><%= t.title %></strike> <%= link_to "Delete", t, method: :delete %>
+       </li>
+    <% else %>
+       <li> 
+        <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.title %> <%= link_to "Delete", t, method: :delete %>
+      </li>
+    <% end %> 
+</ul>
+<% end %>
+<%= submit_tag("Complete Todos", :class=>"btn btn-success") %>
