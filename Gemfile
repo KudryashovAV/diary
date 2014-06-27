@@ -36,6 +36,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # gem 'debugger', group: [:development, :test]
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: :x64_mingw
+#gem "tzinfo-data", platforms: :x64_mingw
 
-gem "wdm", "~> 0.1.0", platforms: :x64_mingw
+#gem "wdm", "~> 0.1.0", platforms: :x64_mingw
+gem "tzinfo-data"
+
+gem "wdm", "~> 0.1.0"
