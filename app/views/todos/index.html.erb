@@ -2,23 +2,20 @@
 <p>All your todos here</p>
 
 
-<%= form_for @todo do |f| %>  
+<%= form_for @todo, remote: true do |f| %>  
   <%= f.text_field :title %>   
-  <%= f.submit "Add" %>
-<% end %>
-
-<% @todos.each do |t| %>
+  <%= f.submit "Add", remote: true %>
+<% end %> 
 <ul>
-  
-    <% if t.completed == true %>
-       <li style="color:grey;"> 
-        <%= check_box_tag  "todos_checkbox[]",t.id %> <strike><%= t.title %></strike> <%= link_to "Delete", t, method: :delete %>
-       </li>
-    <% else %>
-       <li> 
-        <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.title %> <%= link_to "Delete", t, method: :delete %>
-      </li>
-    <% end %> 
-</ul>
+<% @todos.each do |t| %> 
+  <% if t.completed == true %>
+     <li style="color:grey;"><%= check_box_tag  "todos_checkbox[]", t.id%> <s><%= t.title %></s> <%= link_to "Delete", t, remote: true, method: :delete %></li>
+  <% else %>
+     <li> <%= check_box_tag  "todos_checkbox[]", t.id%> <%= t.title %> <%= link_to "Delete", t, remote: true, method: :delete %> </li>
+  <% end %>
 <% end %>
-<%= submit_tag("Complete Todos", :class=>"btn btn-success") %>
+<%= submit_tag 'Complete Todos' %>
+</ul>
+
+
+
