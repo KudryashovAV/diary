@@ -19,14 +19,8 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new todo_params
-    respond_to do |format|
-      if @todo.save
-        flash[:notice] = 'Item was successfully created.'
-        format.js
-        format.html { redirect_to (@todo) }
-        format.xml  { render xml: @todo, status: :created, location: @todo }
-      end
-    end
+    @todo.save
+    redirect_to :back
   end
 
   def complete
@@ -40,7 +34,7 @@ class TodosController < ApplicationController
 
 private
 
-  def movie_params
+  def todo_params
     params.require(:todo).permit(:title, :completed)
   end
 
